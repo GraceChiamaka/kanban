@@ -110,7 +110,7 @@ export const HomePage = () => {
           ) : (
             <ColumContainer>
               <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
-                {columns.map(({ id, title, tasks }, index) => {
+                {columns?.map(({ id, title, tasks }, index) => {
                   return (
                     <Droppable droppableId={id} key={id}>
                       {(provided, snapshot) => {
