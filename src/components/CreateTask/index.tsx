@@ -1,28 +1,37 @@
 import { useState } from "react";
 import { Form, Row, Col, message } from "antd";
 import { CustomInput } from "../General";
+import { useDispatch } from "react-redux";
+import { action } from "typesafe-actions";
+import { ColumnTypes } from "../../store/types/columns";
 import { AddCardContainer, FormContainer } from "./style";
-import { tasksService } from "../../services/tasks";
-import { formatErrMsg } from "../../utils";
 
-export const CreateTask = ({ columnId, refetch }) => {
+export const CreateTask = ({ columnId }) => {
   const [showInput, setShowInput] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const dispatch = useDispatch();
   const [form] = Form.useForm();
 
   const handleSubmit = async (values) => {
     setIsSubmitting(true);
-    try {
-      const result = await tasksService.createTask(values);
-      if (result) {
-        form.resetFields();
-        setIsSubmitting(false);
+    dispatch(
+      action(
+        ColumnTypes.REQUEST_CREATE_TASK_CALL,
+        { ...values, columnId: columnId },
+        onSuccess,
+        onError
+      )
+    );
+  };
 
-        refetch();
-      }
-    } catch (error) {
-      message.error(formatErrMsg(error));
-    }
+  const onSuccess = (data) => {
+    form.resetFields();
+    setIsSubmitting(false);
+    setShowInput(false);
+  };
+  const onError = (error) => {
+    setIsSubmitting(false);
+    message.error(error);
   };
 
   return (
@@ -35,7 +44,7 @@ export const CreateTask = ({ columnId, refetch }) => {
             onFinish={handleSubmit}
           >
             <Form.Item
-              name="name"
+              name="title"
               rules={[{ required: true, message: "Enter a task title" }]}
             >
               <CustomInput placeholder="Enter a title for this task" />

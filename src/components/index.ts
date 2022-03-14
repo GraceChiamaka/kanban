@@ -1,4 +1,5 @@
-export { HomePage } from "./Home";
-export { Column } from "./Column";
-export { TasksCard } from "./Task";
-export { CreateTask } from "./Task/Create";
+export { Column } from "./DisplayColumn";
+export { TasksCard } from "./TaskCard";
+export { CreateTask } from "./CreateTask";
+export { PageHeader } from "./PageHeader";
+export { CreateColumn } from "./CreateColumn";

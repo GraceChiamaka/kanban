@@ -1,14 +1,17 @@
-export type CreateListPayload = {
-  listId: string;
+export type CreateColumnPayload = {
   title: string;
 };
 export type CreateTaskPayload = {
-  listId: string;
+  columnId: string;
   title: string;
   description: string;
 };
-export type UpdateTaskParentPayload = {
+export type UpdateTaskColumnPayload = {
   listId: string;
   taskId: string;
   destinationId: string;
+};
+
+export type GetColumnPayload = {
+  columnId: string;
 };

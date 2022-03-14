@@ -1,28 +1,47 @@
 import { CustomInput, Button, CustomAlert } from "../General";
-import { Modal, Form, Row, Col } from "antd";
-import { FC } from "react";
-
-type FormValues = {
-  title: string;
-};
+import { Modal, Form, Row, Col, message } from "antd";
+import { useDispatch } from "react-redux";
+import { action } from "typesafe-actions";
+import { ColumnTypes } from "../../store/types/columns";
+import { FC, useState } from "react";
 
 type CreateListProps = {
   show: boolean;
   hide: () => void;
-  submit: (values: FormValues) => void;
-  isSubmitting: boolean;
-  status: any;
 };
 
-export const CreateList: FC<CreateListProps> = ({
-  show,
-  hide,
-  submit,
-  isSubmitting,
-  status,
-}) => {
+export const CreateColumn: FC<CreateListProps> = ({ show, hide }) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<{
+    type: "error" | "success" | "";
+    msg: string;
+  }>({
+    type: "",
+    msg: "",
+  });
+  const dispatch = useDispatch();
+  const [form] = Form.useForm();
+
   const handleSubmit = (values) => {
-    submit(values);
+    setIsSubmitting(true);
+    dispatch(
+      action(
+        ColumnTypes.REQUEST_CREATE_COLUMN_CALL,
+        { ...values },
+        onSuccess,
+        onError
+      )
+    );
+  };
+
+  const onSuccess = (data) => {
+    setIsSubmitting(false);
+    form.resetFields();
+    hide();
+  };
+  const onError = (error) => {
+    setIsSubmitting(false);
+    setStatus({ type: "error", msg: error });
   };
   return (
     <Modal

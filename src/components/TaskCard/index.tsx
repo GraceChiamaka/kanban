@@ -1,7 +1,9 @@
 import { FC } from "react";
-import { CreateTask } from "../index";
-import { CardContainer } from "./style";
+import { Row, Col, Typography } from "antd";
+import { CardContainer, CardHeading } from "./style";
 import { Draggable } from "react-beautiful-dnd";
+import { formatDate } from "../../utils";
+const { Paragraph } = Typography;
 
 type TaskProps = {
   taskTitle: string;
@@ -20,10 +22,8 @@ export const TasksCard: FC<TaskProps> = ({
   taskIndex,
   id,
 }) => {
-  const formatDate = (date: string) => {
-    const newDate = new Date(date).toLocaleString();
-    return newDate.split(",")[0];
-  };
+  const location = window.location.href;
+  const taskUrl = `${location}tasks/${id}`;
 
   return (
     <Draggable key={id} draggableId={id} index={taskIndex}>
@@ -35,7 +35,17 @@ export const TasksCard: FC<TaskProps> = ({
           style={{ ...provided.draggableProps.style }}
           isDragging={snapshot.isDragging}
         >
-          <h3>{taskTitle}</h3>
+          <CardHeading>
+            <Row justify="space-between">
+              <Col lg={16}>
+                <h3>{taskTitle}</h3>
+              </Col>
+              <Col lg={8}>
+                <Paragraph copyable={{ text: taskUrl }}>Copy Link</Paragraph>
+              </Col>
+            </Row>
+          </CardHeading>
+
           <p>{description}</p>
           <span>{formatDate(dateStamp)}</span>
         </CardContainer>
