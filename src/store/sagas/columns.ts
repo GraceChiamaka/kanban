@@ -15,7 +15,7 @@ export interface ResponseGenerator {
   statusText?: string;
 }
 function* getAllColumnsTask(action: AnyAction) {
-  const { payload: data, meta: onSuccess, error: onError } = action;
+  const { meta: onSuccess, error: onError } = action;
   try {
     const payload: ResponseGenerator = yield call(columnService.getAllColumns);
 

@@ -25,14 +25,15 @@ export const TaskDetails = () => {
   }, [taskId, columns]);
 
   const getTaskDetails = () => {
-    return columns.filter((column) => {
-      return column.tasks.filter((c) => {
-        if (c.id === taskId) {
-          setTaskDetails({ ...c });
-          return c;
+    const results = columns.filter((column) => {
+      return column.tasks.filter((task) => {
+        if (task.id === taskId) {
+          setTaskDetails({ ...task });
         }
+        return task;
       });
     });
+    return results;
   };
 
   return (
