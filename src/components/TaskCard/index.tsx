@@ -23,7 +23,7 @@ export const TasksCard: FC<TaskProps> = ({
   id,
 }) => {
   const location = window.location.href;
-  const taskUrl = `${location}tasks/${id}`;
+  const taskUrl = `${location}/${id}`;
 
   return (
     <Draggable key={id} draggableId={id} index={taskIndex}>
