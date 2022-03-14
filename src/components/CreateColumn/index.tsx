@@ -1,5 +1,5 @@
 import { CustomInput, Button, CustomAlert } from "../General";
-import { Modal, Form, Row, Col, message } from "antd";
+import { Modal, Form, Row, Col } from "antd";
 import { useDispatch } from "react-redux";
 import { action } from "typesafe-actions";
 import { ColumnTypes } from "../../store/types/columns";

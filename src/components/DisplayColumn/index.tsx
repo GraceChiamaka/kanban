@@ -1,8 +1,6 @@
 import { ColumnContainer, Heading, ColumnContent } from "./style";
 import { TasksCard, CreateTask } from "../index";
-import { FC, useState, useEffect } from "react";
-import { message } from "antd";
-import { formatErrMsg } from "../../utils";
+import { FC } from "react";
 
 type ColumnProps = {
   columnTitle: string;
@@ -25,7 +23,7 @@ export const Column: FC<ColumnProps> = ({
   return (
     <ColumnContainer>
       <Heading>
-        <h2 role="heading">{columnTitle}</h2>
+        <h2>{columnTitle}</h2>
         <p data-testid="column-task-count">
           {taskCount <= 1 ? `${taskCount} Task` : `${taskCount} Tasks`}{" "}
         </p>
