@@ -8,9 +8,6 @@ import {
 import { DEFAULT_ROUTES } from "./routes";
 
 class ColumnService extends BaseRequest {
-  constructor() {
-    super();
-  }
   getAllColumns = async () => {
     return await this.api.get(DEFAULT_ROUTES.LIST_ROUTE);
   };

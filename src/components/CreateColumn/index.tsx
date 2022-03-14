@@ -12,10 +12,7 @@ type CreateListProps = {
 
 export const CreateColumn: FC<CreateListProps> = ({ show, hide }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [status, setStatus] = useState<{
-    type: "error" | "success" | "";
-    msg: string;
-  }>({
+  const [status, setStatus] = useState({
     type: "",
     msg: "",
   });
@@ -54,7 +51,9 @@ export const CreateColumn: FC<CreateListProps> = ({ show, hide }) => {
       closable={false}
     >
       <div>
-        {status && <CustomAlert type={status.type} msg={status.msg} />}
+        {status && status.type === "error" && (
+          <CustomAlert type={status.type} msg={status.msg} />
+        )}
         <Form layout="vertical" requiredMark={false} onFinish={handleSubmit}>
           <Form.Item
             name="title"
