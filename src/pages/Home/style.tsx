@@ -4,22 +4,27 @@ export const Container = styled.main`
   padding: ${({ theme }) => theme.spacing?.double(48, 80)};
 `;
 
-export const ColumContainer = styled.section`
-  display: flex;
-  width: 100%;
-  overflow-x: auto;
-  flex-wrap: nowrap;
-  padding-bottom: ${({ theme }) => theme.spacing?.large};
-  gap: 24px;
-  &::-webkit-scrollbar {
-    height: 5px;
+export const ContentContainer = styled.section`
+  margin-top: ${({ theme }) => theme.spacing?.custom(40)};
+  text-align: center;
+  h3 {
+    text-align: center;
+    color: ${({ theme }) => theme.colors?.primary[500]};
+    font-size: ${({ theme }) => theme.fontSize?.hero};
+    margin-bottom: ${({ theme }) => theme.spacing?.custom(16)};
+    font-family: ${({ theme }) => theme.fontFamily?.avenirBlack};
   }
-  &::-webkit-scrollbar-track {
-    background: ${({ theme }) => theme.colors?.primary[100]};
-    border-radius: ${({ theme }) => theme.borderRadius?.primary};
+  p {
+    font-size: ${({ theme }) => theme.fontSize?.normal};
+    color: ${({ theme }) => theme.colors?.primary[200]};
+    line-height: ${({ theme }) => theme.spacing?.custom(22)};
   }
-  &::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.colors?.primary[400]};
-    border-radius: ${({ theme }) => theme.borderRadius?.primary};
+  button {
+    width: 120px;
+    height: 48px;
+    background: ${({ theme }) => theme.colors?.primary[500]};
+    color: ${({ theme }) => theme.colors?.primary[100]};
+    border: none;
+    cursor: pointer;
   }
 `;

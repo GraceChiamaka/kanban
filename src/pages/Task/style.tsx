@@ -1,22 +1,25 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.main`
   padding: ${({ theme }) => theme.spacing?.double(48, 80)};
 `;
-export const TaskContainer = styled.div`
-  h1 {
-    font-family: ${({ theme }) => theme.fontFamily?.avenirBlack};
-    font-size: ${({ theme }) => theme.fontSize?.custom(2)};
+
+export const ColumContainer = styled.section`
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  padding-bottom: ${({ theme }) => theme.spacing?.large};
+  gap: 24px;
+  &::-webkit-scrollbar {
+    height: 5px;
   }
-  h3 {
-    font-family: ${({ theme }) => theme.fontFamily?.avenirBlack};
-    font-size: ${({ theme }) => theme.fontSize?.heading};
+  &::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.colors?.primary[100]};
+    border-radius: ${({ theme }) => theme.borderRadius?.primary};
   }
-`;
-export const Description = styled.div`
-  max-height: ${({ theme }) => theme.spacing.custom(350)};
-  overflow-y: scroll;
-  p {
-    font-family: ${({ theme }) => theme.fontFamily?.avenirRoman};
+  &::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors?.primary[400]};
+    border-radius: ${({ theme }) => theme.borderRadius?.primary};
   }
 `;
