@@ -5,7 +5,10 @@ import {
   CreateTaskPayload,
   GetColumnPayload,
 } from "./types";
-import { DEFAULT_ROUTES } from "./routes";
+
+enum DEFAULT_ROUTES {
+  LIST_ROUTE = "/lists",
+}
 
 class ColumnService extends BaseRequest {
   getAllColumns = async () => {

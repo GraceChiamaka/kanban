@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = "https://62262a4d2dfa524018fdeb97.mockapi.io/api/v1";
 
 class BaseRequest {
   protected api: AxiosInstance;

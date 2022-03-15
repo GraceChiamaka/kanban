@@ -53,12 +53,12 @@ export const CreateTask = ({ columnId }) => {
               <textarea placeholder="Add a more detailed description "></textarea>
             </Form.Item>
             <Row justify="space-between">
-              <Col lg={19}>
+              <Col xs={16} lg={19}>
                 <Form.Item>
                   <button disabled={isSubmitting}>Add Task</button>
                 </Form.Item>
               </Col>
-              <Col lg={4}>
+              <Col xs={6} lg={4}>
                 <button
                   disabled={isSubmitting}
                   onClick={() => setShowInput(false)}

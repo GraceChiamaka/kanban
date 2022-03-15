@@ -64,7 +64,7 @@ export const CreateColumn: FC<CreateListProps> = ({ show, hide }) => {
           </Form.Item>
           <Form.Item>
             <Row justify="end" gutter={12}>
-              <Col lg={8}>
+              <Col xs={12} lg={8}>
                 <Button
                   text="Cancel"
                   variant="secondary"
@@ -72,7 +72,7 @@ export const CreateColumn: FC<CreateListProps> = ({ show, hide }) => {
                   disabled={isSubmitting}
                 />
               </Col>
-              <Col lg={10}>
+              <Col xs={12} lg={10}>
                 <Button
                   text="Create List"
                   variant="default"
