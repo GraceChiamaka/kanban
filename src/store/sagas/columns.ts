@@ -1,8 +1,8 @@
 import { RootState } from "./../index";
 import { action as typesafeAction } from "typesafe-actions";
 import { all, call, put, select, takeLatest } from "redux-saga/effects";
-import { ColumnTypes } from "../types/columns";
-import { columnService } from "../../services/columns";
+import { ColumnTypes } from "@store/types/columns";
+import { columnService } from "@src/services/columns";
 import { AnyAction } from "redux";
 import { formatErrMsg } from "../../utils";
 
