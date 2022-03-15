@@ -30,7 +30,7 @@ export const CardHeading = styled.div`
     color: ${({ theme }) => theme.colors?.primary[500]};
     margin-bottom: ${({ theme }) => theme.spacing?.normal};
     font-size: ${({ theme }) => theme.fontSize?.normal};
-    font-family: ${({ theme }) => theme.fontFamily?.avernirBlack};
+    font-family: ${({ theme }) => theme.fontFamily?.avenirBlack};
   }
   .ant-typography {
     font-size: ${({ theme }) => theme.fontSize?.custom(0.7)};

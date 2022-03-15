@@ -1,1 +1,1 @@
-## TalentQL User Dashboard
+## Kanban User
