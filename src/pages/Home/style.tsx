@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 export const Container = styled.main`
   padding: ${({ theme }) => theme.spacing?.double(48, 80)};
+  ${({ theme }) => theme.media?.mobile} {
+    padding: ${({ theme }) => theme.spacing?.double(48, 24)};
+  }
 `;
 
 export const ContentContainer = styled.section`
@@ -26,5 +29,15 @@ export const ContentContainer = styled.section`
     color: ${({ theme }) => theme.colors?.primary[100]};
     border: none;
     cursor: pointer;
+  }
+  ${({ theme }) => theme.media?.mobile} {
+    margin-top: ${({ theme }) => theme.spacing?.custom(0)};
+    h3 {
+      font-size: ${({ theme }) => theme.fontSize?.custom(1.7)};
+      line-height: ${({ theme }) => theme.spacing?.custom(36)};
+    }
+    button {
+      width: 100%;
+    }
   }
 `;

@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 export const Container = styled.main`
   padding: ${({ theme }) => theme.spacing?.double(48, 80)};
+
+  ${({ theme }) => theme.media?.mobile} {
+    padding: ${({ theme }) => theme.spacing?.double(48, 24)};
+  }
 `;
 
 export const ColumContainer = styled.section`

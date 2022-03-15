@@ -20,6 +20,7 @@ export const Tasks = () => {
     msg: "",
   });
   const { columns } = useSelector((state: RootState) => state.columnGroups);
+  const [updatedColumns, setUpdatedColumns] = useState([...columns]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,7 +34,7 @@ export const Tasks = () => {
     }
   }, [columns]);
 
-  const getBoardLists = () => {
+  const getBoardLists = async () => {
     setIsLoading(true);
     dispatch(
       action(ColumnTypes.REQUEST_ALL_COLUMNS_CALL, {}, onSuccess, onError)
@@ -68,6 +69,34 @@ export const Tasks = () => {
     const { source, destination, draggableId } = result;
 
     if (source.droppableId !== destination.droppableId) {
+      const sourceColumn = columns.filter(
+        (column) => column.id === source.droppableId
+      )[0];
+      const destColumn = columns.filter(
+        (column) => column.id === destination.droppableId
+      )[0];
+
+      const sourceItems = [...sourceColumn.tasks];
+      const destItems = [...destColumn.tasks];
+
+      const [removed] = sourceItems.splice(source.index, 1);
+
+      destItems.splice(destination.index, 0, removed);
+
+      const updatedSouceColumn = { ...sourceColumn, tasks: sourceItems };
+      const updatedDestColumn = { ...destColumn, tasks: destItems };
+
+      setUpdatedColumns(
+        updatedColumns.map((column) => {
+          if (column.id === source.droppableId) {
+            return { ...updatedSouceColumn };
+          }
+          if (column.id === destination.droppableId) {
+            return { ...updatedDestColumn };
+          }
+          return column;
+        })
+      );
       const payload = {
         listId: source.droppableId,
         destinationId: destination.droppableId,
@@ -84,13 +113,13 @@ export const Tasks = () => {
       {showAddListModal && (
         <CreateColumn show={showAddListModal} hide={hideModal} />
       )}
-      <Row>
-        <Col lg={21}>
-          {status && status.type === "error" && (
+      {status && status.type === "error" && (
+        <Row>
+          <Col xs={24} lg={21}>
             <CustomAlert type={status.type} msg={status.msg} />
-          )}
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+      )}
       {isLoading ? (
         <Loader>
           <Spin spinning />
@@ -105,12 +134,15 @@ export const Tasks = () => {
             showPageModal={() => setShowAddListModal(true)}
           />
 
-          {columns && columns.length === 0 ? (
+          {updatedColumns && updatedColumns.length === 0 ? (
             <Empty description="No Lists Created" />
           ) : (
             <ColumContainer>
-              <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
-                {columns?.map(({ id, title, tasks }, index) => {
+              <DragDropContext
+                onDragEnd={(result) => onDragEnd(result)}
+                onDragStart={(result) => console.log(result, "drah start")}
+              >
+                {updatedColumns?.map(({ id, title, tasks }, index) => {
                   return (
                     <Droppable droppableId={id} key={id}>
                       {(provided, snapshot) => {

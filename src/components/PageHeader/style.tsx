@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing?.large};
-
+  padding: ${({ theme }) => theme.spacing?.double(40, 0)};
   .ant-row {
     width: 100%;
     align-items: baseline;
@@ -15,7 +15,7 @@ export const Container = styled.div`
     font-family: ${({ theme }) => theme.fontFamily?.avenirBlack};
   }
   p {
-    width: 35%;
+    width: 50%;
     font-size: ${({ theme }) => theme.fontSize?.normal};
     color: ${({ theme }) => theme.colors?.primary[200]};
     line-height: ${({ theme }) => theme.spacing?.custom(22)};
@@ -27,5 +27,15 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.colors?.primary[100]};
     border: none;
     cursor: pointer;
+  }
+
+  ${({ theme }) => theme.media?.mobile} {
+    padding: 0  ;
+    p {
+      width: 100%;
+    }
+    button {
+      width: 100%;
+    }
   }
 `;
