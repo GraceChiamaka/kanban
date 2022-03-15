@@ -2,7 +2,7 @@ import { CustomInput, Button, CustomAlert } from "../General";
 import { Modal, Form, Row, Col } from "antd";
 import { useDispatch } from "react-redux";
 import { action } from "typesafe-actions";
-import { ColumnTypes } from "../../store/types/columns";
+import { ColumnTypes } from "@store/types/columns";
 import { FC, useState } from "react";
 
 type CreateListProps = {
@@ -54,7 +54,12 @@ export const CreateColumn: FC<CreateListProps> = ({ show, hide }) => {
         {status && status.type === "error" && (
           <CustomAlert type={status.type} msg={status.msg} />
         )}
-        <Form layout="vertical" requiredMark={false} onFinish={handleSubmit}>
+        <Form
+          form={form}
+          layout="vertical"
+          requiredMark={false}
+          onFinish={handleSubmit}
+        >
           <Form.Item
             name="title"
             label="List Name"

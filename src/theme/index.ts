@@ -2,20 +2,20 @@ import {
   colors,
   media,
   fontSize,
-  borderRadius,
-  border,
-  spacing,
   fontFamily,
+  borderRadius,
+  spacing,
+  border,
 } from "./declarations";
 
 const theme = {
   colors,
   media,
   fontSize,
+  fontFamily,
   borderRadius,
   spacing,
   border,
-  fontFamily,
 };
 
 export default theme;
