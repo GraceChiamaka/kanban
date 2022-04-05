@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 export default function TasksDetailsPage({ id }) {
   const router = useRouter();
   const taskId = id;
-  return <TaskDetails taskId={taskId} />;
+  return <TaskDetails source="view" taskId={taskId} />;
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {

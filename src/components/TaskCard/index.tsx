@@ -27,11 +27,14 @@ export const TasksCard: FC<TaskProps> = ({
   const [showTaskDetailModal, setShowTaskDetailModal] = useState(false);
   const location = window.location.href;
   const taskUrl = `${location}/${id}`;
+  const closeModal = () => {
+    setShowTaskDetailModal(false);
+  };
 
   return (
     <>
       {showTaskDetailModal && (
-        <TaskDetails hide={() => setShowTaskDetailModal(false)} taskId={id} />
+        <TaskDetails source="homepage" close={closeModal} taskId={id} />
       )}
       <Draggable key={id} draggableId={id} index={taskIndex}>
         {(provided, snapshot) => (

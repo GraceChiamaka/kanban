@@ -1,7 +1,7 @@
 import { Description, TaskContainer } from "./style";
 import { Modal } from "antd";
 import { useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import { RootState } from "../../store";
 import { useRouter } from "next/router";
 import { formatDate } from "@src/utils";
@@ -9,7 +9,13 @@ import { useDispatch } from "react-redux";
 import { action } from "typesafe-actions";
 import { ColumnTypes } from "@src/store/types/columns";
 
-export const TaskDetails = ({ taskId }) => {
+type DetailProps = {
+  taskId: string;
+  source: "homepage" | "view";
+  close?: () => void;
+};
+
+export const TaskDetails: FC<DetailProps> = ({ taskId, source, close }) => {
   const { columns } = useSelector((state: RootState) => state.columnGroups);
   const router = useRouter();
   const [taskDetails, setTaskDetails] = useState({
@@ -47,7 +53,11 @@ export const TaskDetails = ({ taskId }) => {
   };
 
   const closeModal = () => {
-    router.push("/tasks");
+    if (source === "homepage") {
+      close();
+    } else {
+      router.push("/tasks");
+    }
   };
   return (
     <Modal visible={true} footer={null} onCancel={closeModal}>
